@@ -13,7 +13,14 @@ import pandas as pd
 
 
 # Helper functions
-
+def export_design_matrix(df):
+    """
+    Pickles design matrix and stores in processed directory to be trained on
+    Input: clean design matrix df containing only features and target
+    Outpu: pickled design matrix in data directory
+    """
+    df.to_pickle('../data/processed/data.pkl')
+    pass
 
 # Airline cancellation rate
 def get_avg_cancellation_rate(by, time):
@@ -33,22 +40,17 @@ def run_query(query, params, engine):
             and port
     Output: a pandas dataframe containing the query output
     '''
-    
-    with connect(params) as conn:
-#         conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
-#         cur = conn.cursor()
-#         cur.execute(query)
-        return pd.read_sql()
+    return pd.read_sql(query, engine)
 
     
-def show_tables():
+def show_tables(params):
     # Returns a list of all tables and views in our database
     q = """
     SELECT tablename 
     FROM pg_catalog.pg_tables 
     WHERE schemaname != 'pg_catalog' AND schemaname != 'information_schema';
     """
-    return run_query(q)
+    return run_query(q, params)
 
 
 def run_command(command, params):
@@ -500,10 +502,6 @@ def build_raw_database():
     
     # Shrink files and load all into SQL table
     for file in files:
-#         make_table(path + file, engine)
-#         load_table(file, path, params)
-#     load_table(files[0], path, params)
-#     load_csvs('flights', path, params)
         make_table(path, file, engine, table_name)
     pass
         
