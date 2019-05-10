@@ -1,49 +1,17 @@
-## project-03
-
 Author: Scott Butters
-Description: Using classification models to detect CNC setup issua part.
+Description: Predicting flight cancellations
 
-## Project Organization 
-------------
+## Overview
 
-(generated with [datasciencemvp](https://github.com/cliffclive/datasciencemvp/))
+Over 99% of all scheduled domestic flights take off, and the rest are very expensive. Of over 10 million flights scheduled flights each year, hundreds of thousands never leave the tarmac. At an average of $5770 in losses per cancellation this adds up to nearly a billion dollars of opportunity. While a significant chunk of those losses is unavoidable, it stands to reason that if an airline could confidently predict a cancellation far enough in advance, they could start taking measures to reduce those losses by doing things such as rebooking stranded passengers and rescheduling flight crews.
 
-(modified from [cookiecutter-datascience](https://drivendata.github.io/cookiecutter-data-science/))
+The aim of this project is to build a predictive model that can tell an airline that an upcoming flight will be cancelled at least a day before it actually happens.
 
-```
-    ├── LICENSE
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-```
+The code in this notebook goes through all of the necessary steps to: 
+* Download the required datasets
+* Build a SQL database containing the data
+* Process the data into features usable by machine learning models
+* Join the data into a pandas DataFrame  design matrix
+* Scrub and prepare the data for modeling
+* Build, train, and tune models using cross validation
+* Select a final model and predict it's effectiveness with a holdout dataset.
